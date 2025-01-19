@@ -32,13 +32,49 @@ const App = {
   },
 
   initFormValidation() {
-    // Form validation logic
-    const form = document.querySelector("form");
+    const form = document.getElementById("contactForm");
     if (form) {
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        // Add your form submission logic here
-        console.log("Form submitted");
+
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML =
+          '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+        submitBtn.disabled = true;
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (response.ok) {
+            // Show success message
+            form.reset();
+            this.showToast(
+              "Success!",
+              "Your message has been sent successfully."
+            );
+          } else {
+            throw new Error("Failed to send message");
+          }
+        } catch (error) {
+          // Show error message
+          this.showToast(
+            "Error!",
+            "Failed to send message. Please try again later.",
+            "error"
+          );
+        } finally {
+          // Reset button state
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
       });
     }
   },
@@ -125,6 +161,38 @@ const App = {
     if (skeleton) {
       skeleton.style.display = "none";
     }
+  },
+
+  showToast(title, message, type = "success") {
+    const toastHTML = `
+      <div class="toast align-items-center text-white bg-${
+        type === "success" ? "success" : "danger"
+      } border-0" 
+           role="alert" 
+           aria-live="assertive" 
+           aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            <strong>${title}</strong> ${message}
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    `;
+
+    const toastContainer = document.createElement("div");
+    toastContainer.className =
+      "toast-container position-fixed bottom-0 end-0 p-3";
+    toastContainer.innerHTML = toastHTML;
+    document.body.appendChild(toastContainer);
+
+    const toast = new bootstrap.Toast(toastContainer.querySelector(".toast"));
+    toast.show();
+
+    // Remove toast container after it's hidden
+    toastContainer.addEventListener("hidden.bs.toast", () => {
+      document.body.removeChild(toastContainer);
+    });
   },
 };
 
