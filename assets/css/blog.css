@@ -1,0 +1,44 @@
+/* Blog specific styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+}
+
+/* Header styles */
+header {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding-top: 6rem !important;
+}
+
+/* Featured post image */
+.featured-post-img {
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Blog post cards */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Category badges */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 1em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .featured-post-img {
+        height: 300px;
+    }
+    
+    .card-img-top {
+        height: 180px;
+    }
+}

@@ -1,0 +1,50 @@
+/* Learning Hub specific styles */
+
+/* Resource Cards */
+.resource-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+}
+
+.resource-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* Guide Cards */
+.guide-card {
+    transition: transform 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Tutorial Cards */
+.tutorial-card {
+    transition: transform 0.3s ease;
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+}
+
+.tutorial-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .resource-icon {
+        font-size: 2rem;
+    }
+    
+    .tutorial-card .card-img-top {
+        height: 180px;
+    }
+}

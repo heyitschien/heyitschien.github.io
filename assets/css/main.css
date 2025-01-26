@@ -1,0 +1,263 @@
+body {
+    margin: 10px;
+  }
+  
+  /* Custom CSS */
+  .profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  #hero {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+  
+  .skill-item .progress-bar {
+    transition: width 1s ease-in-out;
+  }
+  
+  .card {
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .profile-img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  
+  /* Add Intersection Observer for scroll animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--delay, 0s); /* Allow custom delays */
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Use CSS Custom Properties for theming */
+  :root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --transition-timing: 0.3s ease;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Use CSS Grid for modern layouts */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Add smooth scrolling behavior */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  
+  /* Add to your existing CSS */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-top-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+  }
+  
+  /* Add to profile-v1.css */
+  .loading-skeleton {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 9999;
+  }
+  
+  .skeleton-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  .skeleton-text {
+    height: 20px;
+    margin: 10px 0;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+  /* Single, clear rule for offcanvas */
+  .offcanvas-end {
+    width: 280px !important; /* Fixed width instead of viewport units */
+    background-color: rgba(33, 37, 41, 0.95) !important;
+  }
+  
+  /* Add active state for nav links */
+  .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+    z-index: 1; /* Ensure link is above other elements */
+    pointer-events: auto; /* Ensure clicks are registered */
+  }
+  
+  .nav-link.active {
+    color: var(--primary-color) !important;
+  }
+  
+  /* Add indicator line under active link */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link.active::after {
+    width: 100%;
+  }
+  
+  /* Add smooth transition when closing offcanvas */
+  .offcanvas.offcanvas-end {
+    width: 66.67vw !important;
+    max-width: 66.67vw !important;
+    min-width: 250px !important;
+  }
+  
+  /* More specific targeting */
+  #navbarOffcanvas.offcanvas.offcanvas-end {
+    width: 66.67vw !important;
+    max-width: 66.67vw !important;
+    min-width: 250px !important;
+  }
+  
+  /* Add responsive adjustments */
+  @media (max-width: 576px) {
+    #navbarOffcanvas.offcanvas.offcanvas-end {
+      width: 66.67vw !important;
+      max-width: 66.67vw !important;
+    }
+  }
+  
+  /* Featured Content Section Styles */
+  #featured .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #featured .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Dropdown Menu Styles */
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .dropdown-item {
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* Dropdown arrow styling */
+  .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    border-top: 0.3em solid white; /* Make arrow white */
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+  }
+  
+  /* Adjust dropdown toggle spacing and alignment */
+  .nav-link.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  /* Remove the underline effect for dropdown toggles */
+  .nav-link.dropdown-toggle::after {
+    content: "";
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    transition: none;
+  }
+  
+  /* Keep the underline effect for regular nav links only */
+  .nav-link:not(.dropdown-toggle)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:not(.dropdown-toggle).active::after {
+    width: 100%;
+  }
+  
